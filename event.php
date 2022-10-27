@@ -4,10 +4,6 @@ require('session.php');
 
 $targetDir = "uploads/";
 
-if (!isset($_SESSION['account'])){
-    $_SESSION['error'] = 'You must log in first!';
-    header('location: login-register.php');
-}
 if (isset($_POST['submit'])) {
     if (!empty($_FILES["file"]["name"])) {
         $fileName = basename($_FILES["file"]["name"]);
@@ -30,7 +26,7 @@ if (isset($_POST['submit'])) {
             if (move_uploaded_file($_FILES['file']['tmp_name'], $targetFilePath)) {
                 $insert = $conn->query("INSERT INTO events(event_name, location, objective, distance, status_event, number_of_participants, limit_number, price, organizer_phone_number, event_image) VALUES ('$event_name', '$location', '$objective', '$distance', '$status_event', '$number_of_participants', '$limit_number', '$price', '$organizer_phone_number', '$fileName')");
                 
-                $sql2 = "SELECT * FROM events WHERE event_name = $event_name";
+                $sql2 = "SELECT * FROM events WHERE event_name = '$event_name'";
                 $result2 = $conn->query($sql2);
                 $row = $result2->fetch_assoc();
                 $_SESSION['event_id'] = $row['event_id'];

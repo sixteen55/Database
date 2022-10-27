@@ -30,6 +30,9 @@ tr:nth-child(even) {
     <body>
     <h2>Profile</h2>
     <a href="profileedit.php" class="btn btn-warning pull-right" role="button">แก้ไข</a>
+    <div class="d-sm-flex justify-content-end mt-2"> 
+      <a href= "login-register.php" class="btn btn-sm btn-default mb-3">back</a>
+    </div>
       <table class="table table" style="margin-top: 20px">
         <?php
          while($row = $results->fetch_assoc()){
@@ -62,7 +65,6 @@ tr:nth-child(even) {
             } 
             ?>
       </table>
-
 <?php
 // require('footer.php');
 ?>
