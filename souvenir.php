@@ -22,7 +22,7 @@ if (isset($_POST['submit'])) {
             if (move_uploaded_file($_FILES['file']['tmp_name'], $targetFilePath)) {
                 $insert = $conn->query("INSERT INTO souvenir(souvenir_name, price, souvenir_image, details, event_id) VALUES ('$souvenir_name', '$price', '$fileName', '$details', '$event_id')");
                 if ($insert) {
-                    $_SESSION['statusMsg'] = "The file <b>" . $fileName . "</b> has been uploaded successfully.";
+                    $_SESSION['statusMsg'] = "Add souvenir succeed.";
                     header("location: souvenirform.php");
                 } else {
                     $_SESSION['statusMsg'] = "File upload failed, please try again.";
@@ -37,7 +37,7 @@ if (isset($_POST['submit'])) {
             header("location: souvenirform.php");
         }
     } else {
-        $_SESSION['statusMsg'] = "No souvenir.";
+        $_SESSION['statusMsg'] = "Please upload image.";
         header("location: souvenirform.php");
     }
 }

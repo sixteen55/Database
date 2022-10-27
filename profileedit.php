@@ -1,8 +1,7 @@
 <?php
     require('dbcon.php');
-    require('header.php');
-    require('navbar.php');
     require('session.php');
+    require('header.php');
 
     $phone_number = $_SESSION['account'];
     $sql = "SELECT * FROM account WHERE phone_number='$phone_number'";
@@ -14,15 +13,14 @@
         $email = $_POST['email'];
         $fname = $_POST['fname'];
         $lname = $_POST['lname'];
-        $roll = $_POST['roll'];
     
-        $sql1 = "UPDATE account SET password = ? , email = ? , fname = ? , lname = ? , roll = ? WHERE phone_number = ?";
+        $sql1 = "UPDATE account SET password = ? , email = ? , fname = ? , lname = ? WHERE phone_number = ?";
         $statement = $conn->prepare($sql1);
-        $statement->bind_param('sssssi', $password, $email , $fname , $lname , $roll , $phone_number);
+        $statement->bind_param('ssssi', $password, $email , $fname , $lname , $phone_number);
         $res = $statement->execute();
     
         if (!$res) {
-            die('Execute failed: ' . $statement->error);
+             die('Execute failed: ' . $statement->error);
         }
         // Redirect
         header('Location: profile.php');
@@ -80,11 +78,6 @@ tr:nth-child(even) {
             <div class="form-group">
                     <th>Lastname :</th>
                     <th><input type="text" class="form-control" name="lname" value="<?php echo $row['lname']?>"></th>
-                    </tr>
-            </div>
-            <div class="form-group">
-                    <th>Role :</th>
-                    <th><input type="text" class="form-control" name="roll" value="<?php echo $row['roll']?>"></th>
                     </tr>
             </div>
             </tbody>

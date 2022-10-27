@@ -32,7 +32,7 @@ $event_id = $_SESSION['event_id'];
                         <p class="small mb-0 mt-2"><b>Note:</b> Only JPG, JPEG, PNG & GIF files are allowed to upload</p>
                     </div>
                     <div class="d-sm-flex justify-content-end mt-2">
-                        <input type="submit" name="submit" value="Submit" class="btn btn-sm btn-danger mb-3">
+                        <input type="submit" name="submit" value="Submit" class="btn btn-sm btn-danger mb-3"> 
                         <a href= "eventform.php" class="btn btn-sm btn-default mb-3">back</a>
                     </div>
                 </form>

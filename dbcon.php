@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "register_db";
+$dbname = "vr_db";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 

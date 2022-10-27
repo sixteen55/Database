@@ -1,6 +1,7 @@
 <?php
 require('session.php');
 require('dbcon.php');
+
 ?>
 <html>
 <style>
@@ -51,6 +52,14 @@ require('dbcon.php');
                         ?>
                     </div>
                 <?php endif ?>
+                <?php if (isset($_SESSION['error1'])) : ?>
+                    <div class="error">
+                        <?php 
+                        echo $_SESSION['error1'];
+                        unset($_SESSION['error1']);
+                        ?>
+                    </div>
+                <?php endif ?>
                 <?php if (isset($_SESSION['succeed'])) : ?>
                     <div class="succeed">
                         <?php 
@@ -67,10 +76,6 @@ require('dbcon.php');
                 <input type="email" class="input-field" name="email" placeholder="Email" required>
                 <input type="text" class="input-field" name="fname" placeholder="First name" required>
                 <input type="text" class="input-field" name="lname" placeholder="Last name" required>
-                <input type="radio" class="chech-box2" id="participant" name="roll" value="participant">
-                <label for="participant"><span>Participant</span></label><br>
-                <input type="radio" class="chech-box" id="organizer" name="roll" value="organizer">
-                <label for="organizer"><span>Organizer</span></label><br>
                 <input type="checkbox" class="chech-box"><span>I agree to the terms & conditions</span>
                 <button type="submit" class="submit-btn" style="color: white;">Register</button>
             </form>

@@ -9,7 +9,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
-    $roll = $_POST['roll'];
 
     $user_check_query = "SELECT * FROM account WHERE phone_number = '$phone_number' OR email = '$email' LIMIT 1";
         $query = mysqli_query($conn, $user_check_query);
@@ -21,25 +20,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			    header('location: login-register.php');
             }
             if ($result['email'] === $email) {
-                $_SESSION['error'] = 'Email already exists!';
+                $_SESSION['error1'] = 'Email already exists!';
 			    header('location: login-register.php');
             }
         }
-
-    // Prepare sql and bind parameters
-    $sql = "INSERT INTO account(phone_number, password, email, fname, lname, roll) VALUES (?, ?, ?, ?, ?, ?)";
-    $statement = $conn->prepare($sql);
-    $statement->bind_param('isssss', $phone_number, $password, $email, $fname, $lname, $roll);
-    $result = $statement->execute();
-
-    // Execute sql and check for failure
-    if (!$result) {
-        die('Execute failed: ' . $statement->error);
+    
+    if (is_numeric($phone_number) == false){
+        $_SESSION['error'] = 'Phone number must be numbers only!';
+        header('Location: login-register.php');
     }
 
-    // Redirect
-    $_SESSION['succeed'] = 'Register Succeed!';
-    header('Location: login-register.php');
+    // Prepare sql and bind parameters
+    $sql = "INSERT INTO account(phone_number, password, email, fname, lname) VALUES (?, ?, ?, ?, ?)";
+    $statement = $conn->prepare($sql);
+    $statement->bind_param('issss', $phone_number, $password, $email, $fname, $lname);
+    $result = $statement->execute();
+
+        // Execute sql and check for failure
+        if (!$result) {
+        die('Execute failed: ' . $statement->error);
+        }
+
+        // Redirect
+        $_SESSION['succeed'] = 'Register Succeed!';
+        header('Location: login-register.php');
     
     exit();
 }

@@ -13,7 +13,7 @@
             $_SESSION['error'] = '';
             $row = $query->fetch_assoc();
 			$_SESSION['account'] = $row['phone_number'];
-			header('location: login-register.php');
+			header('location: profile.php');
         } 
         else{
             $_SESSION['error'] = 'Account not found!';
@@ -21,7 +21,6 @@
         }
     }
 	else{
-		$_SESSION['error'] = 'Enter Phone number first';
 		header('location: login-register.php');
     }
 ?>

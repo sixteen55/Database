@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Profile</title>
+    <title>Virtual run</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -57,7 +57,7 @@ $pageName = basename($_SERVER['PHP_SELF'], '.php');
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.php" style="color: black;">Virtual run</a>
+            <a class="navbar-brand" href="index.php" style="color: white;">Virtual run</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -68,24 +68,20 @@ $pageName = basename($_SERVER['PHP_SELF'], '.php');
             
             <ul class="nav navbar-nav navbar-right">
             <?php
-            if(isset($_SESSION['customer'])){
-              $sql = "SELECT * FROM customer WHERE cid = '".$_SESSION['customer']."'";
-              $query = $conn->query($sql);
-              $row = $query->fetch_assoc();
-              $name = $row['firstname']." ".$row['lastname'];
-              $balance = $row['balance'];
-              echo "
+            if(isset($_SESSION['account'])){
+              ?>
                 <li class='user user-menu'>
-                  <a href='inaccount.php'>".$name."<br> Balance: ".$balance."</a>
+                  <a href='logout.php' style="color: white;">Logout</a>
                 </li>
-                
-              ";
+               <?php 
+              
             }
             else{
-              echo "
-                
-                
-              ";
+              ?>
+              <?php $_SESSION['error'] = 'You must log in first!';
+              header("location: login-register.php"); ?>
+              <?php
+              
             }
           ?>
             </ul>

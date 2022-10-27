@@ -1,8 +1,7 @@
 <?php
     require('dbcon.php');
-    require('header.php');
-    require('navbar.php');
     require('session.php');
+    require('header.php');
 
     $phone_number = $_SESSION['account'];
     $sql = "SELECT * FROM account WHERE phone_number='$phone_number'";
@@ -56,18 +55,13 @@ tr:nth-child(even) {
                 <th>Lastname :</td>
                 <td><?php echo $row['lname'] ?></td>
             </tr>
-            <tr>
-                <th>Role :</td>
-                <td><?php echo $row['roll'] ?></td>
-            </tr>
         </tbody>
               </td><br>
               
               <?php
             } 
             ?>
-              </table>
-    </div>
+      </table>
 
 <?php
 // require('footer.php');
